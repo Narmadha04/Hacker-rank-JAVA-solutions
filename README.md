@@ -1,2 +1,2 @@
-# HackerRank-JAVA-solutions
+# HackerRank-solutions For Certifications
 
