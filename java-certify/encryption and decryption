@@ -1,1 +1,49 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.util.regex.*;
 
+public class reverse {
+    public static String rev(String s){
+        String[] a=s.split(" ");
+        for(int i =0;i<a.length;i++){
+            if(isalphanumeric(a[i])){
+                a[i]=replaceDigitWithPreviousChar(a[i]);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        for (int j=a.length-1;j>=0;j--) {
+            result.append(a[j]).append(" ");
+        }
+        return result.toString().trim();
+    }
+    public static boolean isalphanumeric(String s){
+        return s.matches("[a-zA-Z0-9]+");
+    }
+    private static String replaceDigitWithPreviousChar(String input) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            char currentChar = input.charAt(i);
+            if (Character.isDigit(currentChar)) {
+                int repeatCount = Character.getNumericValue(currentChar) - 1;
+                if (i > 0) {
+                    char previousChar = input.charAt(i - 1);
+                    for (int j = 0; j < repeatCount; j++) {
+                        result.append(previousChar);
+                    }
+                }
+            } else {
+                result.append(currentChar);
+            }
+        }
+
+        return result.toString();
+    }
+    public static void main(String[]args){
+        String s;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the string:");
+        s=sc.nextLine();
+        System.out.print(rev(s));
+    }
+}
